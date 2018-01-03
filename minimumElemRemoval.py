@@ -44,8 +44,41 @@ def minimumRemovals03(arr):
 	print max_arr
 	return len(arr)-len(max_arr)
 
+#Better Solution: Time Complexity: O(n^2), Constant Space
+def minimumRemovals04(arr):
+	maximum_length = 0
+	max_start = None
+	max_end = None
+	for starting_point in range(len(arr)):
+		min_val = arr[starting_point]
+		max_val = arr[starting_point]
+		for end_point in range(starting_point,len(arr)):
+			min_val = min(min_val,arr[end_point])
+			max_val = max(max_val,arr[end_point])
+			
+			#Trickiest part of solution
+			#if this property is violeted then no need to pursue bigger array
+			#As if the upcoming element is smallar of greater than current min or max, 
+			#the condition will remain false
+			if 2*min_val <= max_val:
+				print "True:",arr[starting_point:end_point+1]
+				break
+
+			if 2*min_val > max_val and end_point-starting_point > maximum_length:
+				maximum_length = end_point-starting_point
+				max_start = starting_point
+				max_end = end_point
+			pass
+		pass
+
+	if max_start and max_end:
+		print arr[max_start:max_end+1]
+		return maximum_length
+	return -1
+
 arr1 = [4, 5, 100, 9, 10, 11, 12, 15, 200]
-arr2 = [1,2,3]
+arr2 = [1,2,5]
 print minimumRemovals(arr1)
 print minimumRemovals02(arr1)
 print minimumRemovals03(arr1)
+print minimumRemovals04(arr1)
