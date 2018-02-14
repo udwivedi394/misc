@@ -1,26 +1,32 @@
+#Maximum Palindromic string
+
 def lcsubstring(A):
     B = A[::-1]
     n = len(A)
     lookup = [[0 for i in range(n+1)] for j in range(2)]
 
+    #This maxi contains, [length_of_string, end_index]
     maxi = [0,0]
     #keeping reverse string on vertical axis
     for i in range(1,n+1):
         for j in range(1,n+1):
             if B[i-1] == A[j-1]:
                 lookup[1][j] = lookup[0][j-1]+1
+
+                #Check if current string is palindromic or not
                 if lookup[1][j] >= maxi[0]:
                     res = A[j-lookup[1][j]:j]
+                    #If yes, then put its attributes in maxi
                     if res == res[::-1]:
                         maxi = lookup[1][j],j
         lookup[0] = lookup[1]
         lookup[1] = [0]*(n+1)
 
     res = A[maxi[1]-maxi[0]:maxi[1]]
-    print res
-    if res == res[::-1]:
-        return res
-    return lcsubstring(res)
+    #print res
+    #if res == res[::-1]:
+    return res
+    #return lcsubstring(res)
 
 
 def lcsubstring03(A):
