@@ -42,7 +42,7 @@ def justify(A,L):
         if j == n or totgap==0:
             string += " "*(L-len(string))
             
-        print string,len(string)
+        print string#,len(string)
         arr.append(string)
         i = j
 
@@ -57,3 +57,8 @@ justify(A,16)
 
 A = [ "am", "fasgoprn", "lvqsrjylg", "rzuslwan", "xlaui", "tnzegzuzn", "kuiwdc", "fofjkkkm", "ssqjig", "tcmejefj", "uixgzm", "lyuxeaxsg", "iqiyip", "msv", "uurcazjc", "earsrvrq", "qlq", "lxrtzkjpg", "jkxymjus", "mvornwza", "zty", "q", "nsecqphjy" ]
 justify(A,14)
+
+A = [ "What", "must", "be", "shall", "be." ]
+B = 12
+
+justify(A,B)
