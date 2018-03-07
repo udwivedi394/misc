@@ -1,5 +1,5 @@
 #https://www.interviewbit.com/problems/combination-sum-ii/
-
+"""
 def combSumII(A,B):
     A.sort()
     print A
@@ -53,3 +53,30 @@ B = 33
 A = [2,3,6,7]
 B = 7
 print combSumII(A,B)
+"""
+
+def combinationSum(A,B):
+    A.sort()
+    final_arr = []
+    combinationSumUtility(A,0,0,B,[],final_arr)
+    return final_arr
+
+def combinationSumUtility(A,index,sumi,target,stri,final_arr):
+    if sumi == target:
+        final_arr.append(stri)
+        return
+
+    if index >= len(A):
+        return
+
+    if sumi+A[index] <= target:
+        combinationSumUtility(A,index+1,sumi+A[index],target,stri+[A[index]],final_arr)
+        temp = index
+        while temp < len(A) and A[temp] == A[index]:
+            temp += 1
+        combinationSumUtility(A,temp,sumi,target,stri,final_arr)
+    return
+
+A = [10,1,2,7,6,1,5]
+B = 8
+print combinationSum(A,B)
